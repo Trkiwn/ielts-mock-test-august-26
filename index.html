@@ -1,0 +1,866 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>IELTS Mock Test — 22 May 2026</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --navy:#1A3A5C;
+  --navy-deep:#0F2238;
+  --teal:#2D8A6E;
+  --teal-light:#E8F5F1;
+  --amber:#F6AE2D;
+  --clay:#C0392B;
+  --clay-light:#FDECEA;
+  --purple:#8E44AD;
+  --purple-light:#F1E7F9;
+  --ink:#1C2B36;
+  --ink-mid:#4A5568;
+  --ink-soft:#6B7B8D;
+  --rule:#D5DDE6;
+  --bg:#F4F6F9;
+  --card:#FFFFFF;
+  --shadow:0 2px 12px rgba(26,58,92,0.08);
+  --mono:'IBM Plex Mono',monospace;
+  --sans:'IBM Plex Sans',sans-serif;
+}
+body{font-family:var(--sans);background:var(--bg);color:var(--ink);min-height:100vh;padding-bottom:80px}
+.skip-link{position:absolute;left:-999px;top:0;background:var(--navy);color:white;padding:8px 14px;z-index:400}
+.skip-link:focus{left:10px;top:10px}
+/* ── Sticky header ── */
+#exam-header{
+  position:fixed;top:0;left:0;right:0;z-index:200;
+  background:var(--navy-deep);
+  display:grid;grid-template-columns:1fr auto 1fr;
+  align-items:center;padding:0 28px;height:56px;
+  border-bottom:3px solid var(--teal);
+}
+.hdr-left{color:rgba(255,255,255,0.75);font-size:0.78rem;font-weight:500;letter-spacing:0.06em;text-transform:uppercase}
+.hdr-center{text-align:center}
+.hdr-right{text-align:right}
+#timer{
+  font-family:var(--mono);font-size:1.4rem;font-weight:500;
+  color:var(--teal);letter-spacing:0.08em;
+  transition:color 0.4s;
+}
+#timer.amber{color:var(--amber)}
+#timer.red{color:#ff6b6b}
+#progress-rail{display:flex;gap:4px;justify-content:flex-end;align-items:center}
+.rail-step{
+  width:36px;height:5px;border-radius:3px;
+  background:rgba(255,255,255,0.15);transition:background 0.3s;
+}
+.rail-step.done{background:var(--teal)}
+.rail-step.active{background:var(--amber)}
+/* ── Main layout ── */
+main{max-width:820px;margin:0 auto;padding:80px 20px 40px}
+/* ── Cover ── */
+#cover{
+  min-height:calc(100vh - 56px);
+  display:flex;flex-direction:column;align-items:center;justify-content:center;
+  text-align:center;padding:40px 20px;
+}
+.cover-eyebrow{color:var(--teal);font-size:0.78rem;font-weight:600;letter-spacing:0.12em;text-transform:uppercase;margin-bottom:12px}
+.cover-title{font-size:2.2rem;font-weight:700;color:var(--navy);line-height:1.2;margin-bottom:8px}
+.cover-sub{font-size:1.05rem;color:var(--ink-mid);margin-bottom:32px}
+.cover-rules{
+  background:var(--card);border-radius:12px;padding:24px 32px;
+  text-align:left;max-width:520px;width:100%;
+  box-shadow:var(--shadow);margin-bottom:32px;
+  border-left:4px solid var(--navy);
+}
+.cover-rules h3{font-size:0.85rem;font-weight:600;text-transform:uppercase;letter-spacing:0.08em;color:var(--navy);margin-bottom:14px}
+.cover-rules li{font-size:0.92rem;color:var(--ink-mid);margin-bottom:7px;padding-left:16px;list-style:none;position:relative;line-height:1.7}
+.cover-rules li::before{content:"—";color:var(--teal);position:absolute;left:0;top:0;line-height:1.7}
+.cover-intro{position:relative}
+.exam-facts{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:28px;justify-content:center}
+.fact-chip{border:1px solid var(--rule);background:rgba(255,255,255,0.72);border-radius:999px;padding:7px 11px;font-family:var(--mono);font-size:0.73rem;color:var(--navy)}
+.cover-panel{position:relative}
+.field{display:flex;flex-direction:column;gap:6px;flex:1;min-width:0}
+.integrity-check{display:flex;align-items:flex-start;gap:9px;font-size:0.8rem;line-height:1.5;color:var(--ink-mid);margin:12px 0 20px;text-align:left}
+.integrity-check input{margin-top:3px;accent-color:var(--teal)}
+.name-row{display:flex;gap:12px;max-width:520px;width:100%;margin-bottom:24px}
+.name-row input{
+  flex:1;border:2px solid var(--rule);border-radius:8px;
+  padding:10px 14px;font-family:var(--sans);font-size:0.95rem;
+  outline:none;transition:border-color 0.2s;
+}
+.name-row input:focus{border-color:var(--teal)}
+/* ── Buttons ── */
+.btn{
+  display:inline-flex;align-items:center;gap:8px;
+  padding:12px 28px;border-radius:8px;border:none;
+  font-family:var(--sans);font-size:0.95rem;font-weight:600;
+  cursor:pointer;transition:all 0.18s;
+}
+.btn-primary{background:var(--navy);color:white}
+.btn-primary:hover{background:#243F6B}
+.btn-teal{background:var(--teal);color:white}
+.btn-teal:hover{background:#1f6b52}
+.btn-outline{background:transparent;border:2px solid var(--navy);color:var(--navy)}
+.btn-outline:hover{background:var(--navy);color:white}
+.btn:disabled{opacity:0.45;cursor:not-allowed}
+/* ── Section wrapper ── */
+.exam-section{display:none;animation:fadeIn 0.3s ease}
+.exam-section.active{display:block}
+@keyframes fadeIn{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:translateY(0)}}
+.section-hdr{margin-bottom:28px;padding-bottom:16px;border-bottom:2px solid var(--rule)}
+.section-eyebrow{font-size:0.72rem;font-weight:600;letter-spacing:0.1em;text-transform:uppercase;color:var(--teal);margin-bottom:6px}
+.section-title{font-size:1.5rem;font-weight:700;color:var(--navy);margin-bottom:6px}
+.section-desc{font-size:0.9rem;color:var(--ink-mid);line-height:1.6}
+.marks-badge{display:inline-block;background:var(--navy);color:white;border-radius:20px;padding:3px 12px;font-size:0.72rem;font-weight:600;margin-left:10px;vertical-align:middle}
+/* ── Passage ── */
+.passage{
+  background:#fbfdff;border:1px solid var(--rule);border-radius:10px;
+  padding:16px 18px;margin:12px 0 18px;font-size:0.94rem;
+  text-align:justify;max-height:420px;overflow-y:auto;
+}
+.passage p{margin:0 0 12px}
+.passage p:last-child{margin-bottom:0}
+/* ── Question card ── */
+.q-card{
+  background:var(--card);border-radius:10px;
+  padding:22px 26px;margin-bottom:14px;
+  box-shadow:var(--shadow);border-left:3px solid transparent;
+  transition:border-color 0.2s;
+}
+.q-card.answered{border-left-color:var(--teal)}
+.q-num{font-size:0.72rem;font-weight:600;letter-spacing:0.08em;text-transform:uppercase;color:var(--ink-soft);margin-bottom:6px}
+.q-stem{font-size:0.97rem;line-height:1.6;color:var(--ink);margin-bottom:16px}
+/* ── MCQ / options ── */
+.options{display:flex;flex-direction:column;gap:8px}
+.opt-label{
+  display:flex;align-items:flex-start;gap:12px;
+  padding:10px 14px;border-radius:7px;border:1.5px solid var(--rule);
+  cursor:pointer;transition:all 0.15s;font-size:0.93rem;
+  background:var(--bg);
+}
+.opt-label:hover{border-color:var(--teal);background:var(--teal-light)}
+.opt-label input[type=radio]{display:none}
+.opt-label.selected{border-color:var(--navy);background:#EBF0F7}
+.opt-key{
+  width:22px;height:22px;border-radius:50%;
+  background:var(--rule);display:flex;align-items:center;justify-content:center;
+  font-size:0.72rem;font-weight:700;color:var(--ink-mid);flex-shrink:0;margin-top:1px;
+}
+.opt-label.selected .opt-key{background:var(--navy);color:white}
+/* ── Text inputs / textarea ── */
+.short-input,.long-input{
+  width:100%;border:2px solid var(--rule);border-radius:7px;
+  padding:10px 14px;font-family:var(--mono);font-size:0.88rem;
+  color:var(--ink);background:var(--bg);outline:none;
+  transition:border-color 0.2s;resize:vertical;
+}
+.short-input:focus,.long-input:focus{border-color:var(--teal);background:white}
+.long-input{min-height:110px;line-height:1.6}
+/* ── Word counter ── */
+.word-counter-wrap{display:flex;justify-content:space-between;align-items:center;margin-top:8px}
+.word-counter{font-family:var(--mono);font-size:0.82rem;color:var(--ink-soft);transition:color 0.3s}
+.word-counter.ok{color:var(--teal)}
+/* ── Listening: audio + diagram + form ── */
+.audio-box{background:#fbfdff;border:1px solid var(--rule);border-radius:10px;padding:14px 16px;margin:10px 0 16px}
+.audio-box audio{width:100%}
+.audio-box .audio-label{font-size:0.82rem;font-weight:600;color:var(--navy);margin-bottom:8px}
+.diagram-box{background:#fbfdff;border:1px solid var(--rule);border-radius:10px;padding:14px 16px;margin:10px 0 16px;font-size:0.88rem}
+.diagram-box .letters{color:var(--ink-soft)}
+.diagram-box img{max-width:100%;display:block;margin-top:10px;border-radius:6px;border:1px solid var(--rule)}
+.grid-form{display:grid;grid-template-columns:1fr 1fr;gap:12px 20px;margin:14px 0}
+.field-l{display:flex;flex-direction:column;gap:4px}
+.field-l label{font-size:0.85rem;font-weight:600;color:var(--navy)}
+.field-l input[type="text"]{border:1.5px solid var(--rule);border-radius:6px;padding:8px 10px;font-family:inherit;font-size:0.9rem;background:white}
+.mc-row{display:flex;gap:10px;flex-wrap:wrap;margin-top:4px}
+/* ── Nav ── */
+.nav-row{display:flex;gap:12px;margin-top:28px;justify-content:space-between;align-items:center}
+.progress-text{font-size:0.82rem;color:var(--ink-soft)}
+/* ── Submit banner ── */
+#submit-banner{
+  display:none;background:var(--teal);color:white;
+  border-radius:12px;padding:32px;text-align:center;margin-top:32px;
+}
+#submit-banner h2{font-size:1.4rem;font-weight:700;margin-bottom:8px}
+#submit-banner p{font-size:0.92rem;opacity:0.85;margin-bottom:20px}
+/* ── Print sheet ── */
+#print-sheet{display:none}
+@media print{
+  #exam-header,#cover,.exam-section,#submit-banner{display:none!important}
+  #print-sheet{display:block}
+  body{background:white;padding:0}
+}
+.print-section{margin-bottom:24px;page-break-inside:avoid}
+.print-section h3{font-size:12pt;margin-bottom:8px;border-bottom:1px solid #ccc;padding-bottom:4px}
+.print-item{font-size:10pt;margin-bottom:6px;line-height:1.6}
+/* ── Utilities ── */
+.hidden{display:none!important}
+.tip-box{background:var(--teal-light);border-radius:7px;padding:10px 16px;font-size:0.85rem;color:#1f6b52;margin-bottom:18px;border-left:3px solid var(--teal)}
+.note-box{background:#fff8e6;border:1px solid #f1dfa8;border-radius:8px;padding:10px 14px;font-size:0.86rem;color:#7a5c00;margin:10px 0 16px}
+.copy-note{position:fixed;right:20px;bottom:20px;z-index:260;background:var(--navy-deep);color:white;padding:10px 14px;border-radius:8px;box-shadow:var(--shadow);opacity:0;transform:translateY(8px);pointer-events:none;transition:all .2s ease}
+.copy-note.show{opacity:1;transform:translateY(0)}
+</style>
+</head>
+<body>
+<a class="skip-link" href="#main-content">Skip to exam content</a>
+<div id="copy-note" class="copy-note">Copying exam content is protected.</div>
+
+<!-- Sticky header -->
+<div id="exam-header">
+  <div class="hdr-left">IELTS Mock Test · 19 August 2026</div>
+  <div class="hdr-center"><div id="timer">90:00</div></div>
+  <div class="hdr-right"><div id="progress-rail"></div></div>
+</div>
+
+<main id="main-content">
+
+<!-- ══ COVER ══ -->
+<div id="cover">
+  <div class="cover-intro">
+    <div class="cover-eyebrow">IELTS Mock Test</div>
+    <div class="cover-title">Reading · Writing · Listening</div>
+    <div class="cover-sub">Test date: 19 August 2026 · About 90 minutes</div>
+    <div class="exam-facts" aria-label="Exam facts">
+      <span class="fact-chip">~90 minutes</span><span class="fact-chip">3 sections</span><span class="fact-chip">13 reading Qs</span><span class="fact-chip">Task 2 essay</span><span class="fact-chip">Listening Parts 1–2</span>
+    </div>
+  </div>
+  <div class="cover-panel">
+    <div class="cover-rules">
+      <h3>Before you begin</h3>
+      <ul>
+        <li>You have about <strong>90 minutes</strong>. The timer starts when you click Begin.</li>
+        <li>There are <strong>3 sections</strong>: Reading, Writing, Listening. Work through them in order.</li>
+        <li>You <strong>cannot go back</strong> once you move to the next section.</li>
+        <li>Reading: match statements to people (Q1–6), then answer Yes / No / Not Given (Q7–13).</li>
+        <li>Writing: aim for at least <strong>250 words</strong>. A live counter will guide you.</li>
+        <li>Listening: your teacher will play the audio in class — fill in your answers as you listen.</li>
+        <li>When time expires, your work is automatically submitted.</li>
+        <li>This is not auto-graded. Your teacher will mark your answers after you submit.</li>
+      </ul>
+    </div>
+    <div class="name-row">
+      <div class="field"><label for="student-name">Full name</label><input type="text" id="student-name" placeholder="Full name" autocomplete="name"></div>
+      <div class="field"><label for="student-date">Today's date</label><input type="date" id="student-date" autocomplete="bday"></div>
+    </div>
+    <label class="integrity-check"><input type="checkbox" id="integrity-check"> <span>I understand that this is an individual assessment and confirm that the work I submit is my own.</span></label>
+    <button class="btn btn-primary" onclick="startExam()">Begin Exam →</button>
+  </div>
+</div>
+
+<!-- ══ SECTION 1: Reading ══ -->
+<div class="exam-section" id="sec1">
+  <div class="section-hdr">
+    <div class="section-eyebrow">Section 1</div>
+    <div class="section-title">Reading <span class="marks-badge">13 questions</span></div>
+    <div class="section-desc">Read the passage, then answer Questions 1–13 below. Suggested time: <strong>20 minutes</strong>.</div>
+  </div>
+
+  <div class="q-card">
+    <div class="q-num">Passage</div>
+    <div class="passage">
+      <p>In a museum laboratory, Irene Good is studying pieces of silk from long-lost cloth found at archaeological sites in western Europe and central and south Asia. Good immerses the threads in a solution to tease apart the strands of protein. Then she uses several methods of biochemical analysis to examine the proteins' amino acids. What amino acids are present and the order they are in vary in different species of moths and therefore give a clue to the place where the silk was made.</p>
+      <p>"What I love most is being able, not just to alter what's known, but to improve access to the past based on very tiny pieces of evidence. Until recently, it was assumed that all [ancient] silk was from China," says Good, a specialist in fibre analysis and ancient-textile production and trade at Harvard University's Peabody Museum. "Scholars held that any silk dating from 2400 to 700 B.C. was carried afar on trade routes from China. But our work is now calling that assumption into question." Her findings indicate that the ancient silk came not from domesticated Chinese silkworms but from species of wild moths native to western Europe and Asia. "Now it looks like some of the silk industry outside China was earlier than thought and more widespread," Good says.</p>
+      <p>Today, Good and other researchers are applying high-tech methods of chemical analysis to ancient textiles and fibres to glean unique clues about past civilisations. The results are shedding light on many aspects of daily life among early peoples. Much of the insight is coming from minuscule samples of textiles, which archaeologists categorise as "fibre perishables". Until recently, these remains were usually overlooked because they were frayed, discoloured or too fragile to withstand the rigours of analysis.</p>
+      <p>"Because textiles are organic, they're subject to biological deterioration from air, water, minerals, insects and fungi. All kinds of things attack organic material and use it as their dinner," says Joseph Lambert of Northwestern University in Illinois. He is a pioneer in the use of analytical-chemical techniques for the study of archaeological materials.</p>
+      <p>Most cloth and other fibre goods degrade over time and eventually disappear. However, according to Lambert, in some cases ancient textiles survived well because they'd spent centuries in arid, freezing or low-oxygen environments, such as well-sealed tombs. Scientific interest in ancient textiles and other fibre objects is burgeoning. "Today, we're finally combining archaeological background with training in [scientific] instrumentation to put it all together," says Lambert.</p>
+      <p>Chemical analysis and powerful microscopy can reveal remarkable characteristics of textiles: what plants and animals the fibres came from, how the yarns were made, what weaving techniques were employed and what dyes or pigments were used to colour them. Such information, combined with other evidence, enables researchers to infer the technological skills of ancient civilisations and the cultural importance of their textiles, notes Kathryn Jakes of Ohio State University in Columbus.</p>
+      <p>Among the fabric samples Jakes has analysed are carbonised scraps from Hopewell burial sites, which were typically earth mounds. Analyses have revealed decorative patterns indicating that at least some of the now-faded Hopewell-era textiles had been coloured. "The presence of colour reflects a significant level of technology, including knowledge of colourants in nature and of methods required to affix them to organic materials," says Jakes. She and her colleagues have conducted experiments to find out what combinations of plants and minerals the Hopewell groups may have used to produce various colours. Prehistoric people probably used plants like sumac and bedstraw as dyes, Jakes says, because caches of those seeds have been recovered from archaeological sites although the plants have no known dietary use. In one set of experiments, for example, the researchers made dye baths from sumac berries and bedstraw roots combined with different mineral fixatives. When the researchers tested the baths on fibres from milkweed plants and rabbit hair, only one combination – sumac, bedstraw and potassium carbonate – produced a deep red that was colourfast.</p>
+      <p>Richard Evershed of the University of Bristol is another pioneer in the chemical analysis of organic archaeological materials. In the Sept. 16 issue of Nature, he and his colleagues describe their study of cloth wrappings from animal mummies of Ancient Egypt. The Egyptians preserved millions of mammals, birds and reptiles as votive offerings. Scholars had assumed that ancient people used relatively simple and inexpensive methods to prepare this multitude of animals for burial. Evershed's findings call that assumption into question. His team analysed samples from cat, hawk and ibis mummies. The embalming substances turned out to include fairly exotic materials, such as oils, beeswax, sugar gum and tree resins and were as complex as those used for human mummification. Evershed suggests that the Ancient Egyptians had surprisingly sophisticated knowledge of how to use various preservatives.</p>
+      <p>The study of ancient textiles and other organic materials is a much-needed counterpoint to the traditional archaeological focus on objects made of stone, bone, metal and clay, says Penelope Drooker of the New York State Museum in Albany. Evidence from tools and weapons can lead to skewed interpretations of past life, she says. Until fairly recently in human history, Drooker points out, perishable goods comprised a large part of the materials of everyday life. At some archaeological sites in western North America, for example, an estimated 95 per cent of recovered artefacts were made of wood, bark, plant fibre, leather, fur or feathers.</p>
+      <p>As sophisticated techniques of analysis have revealed more detailed information about ancient textiles, scholars have been rethinking ideas about the early development of skills such as spinning and weaving. Fibre samples found in caves in France had convinced scientists that textile production first arose about 15,000 years ago. Now, some scholars assert that weaving and cloth making developed considerably earlier. After examining early representations of human clothing, Elizabeth Barber of Occidental College in Los Angeles concluded that textile weaving is at least 20,000 years old. A specialist in the Bronze Age and Neolithic cultures of the Aegean and southeast Europe, she has argued that fibre-making expertise was as revolutionary as the creation of equipment for working with stone and metal. Learning to twist plant and animal fibres into string-like yarns enabled prehistoric people to weave nets, baskets and other objects that eased the chores of everyday life, Barber explains in her extensive writings. As the tasks of providing food, clothing and shelter were divided between men and women in tribal societies, she says, women became the primary weavers because they could perform that activity while tending children.</p>
+    </div>
+  </div>
+
+  <div class="q-card">
+    <div class="q-num">Questions 1–6</div>
+    <div class="q-stem">Match each statement with the correct person. You may use any letter more than once.</div>
+    <div id="rq-match"></div>
+  </div>
+
+  <div class="q-card">
+    <div class="q-num">Questions 7–13</div>
+    <div class="q-stem">Do the following statements agree with the information given in the passage? Choose YES, NO, or NOT GIVEN.</div>
+    <div id="rq-ynn"></div>
+  </div>
+
+  <div class="nav-row">
+    <span class="progress-text" id="reading-progress">0 / 13 answered</span>
+    <button class="btn btn-teal" onclick="goSection(2)">Next: Listening →</button>
+  </div>
+</div>
+
+<!-- ══ SECTION 2: Listening ══ -->
+<div class="exam-section" id="sec2">
+  <div class="section-hdr">
+    <div class="section-eyebrow">Section 2</div>
+    <div class="section-title">Listening — Parts 1 &amp; 2</div>
+    <div class="section-desc">Listen to the recordings your teacher plays and fill in your answers below.</div>
+  </div>
+
+  <div class="q-card">
+    <div class="q-num">Part 1 — Packham's Shipping Agency</div>
+
+    <!-- AUDIO PLACEHOLDER — PART 1
+         Replace the src="" below with the path/URL to your Part 1 audio file, e.g. src="audio/part1.mp3" -->
+    <div class="audio-box">
+      <div class="audio-label">🎧 Part 1 Audio</div>
+      <audio controls>
+        <source src="audio/part1.mp3" type="audio/mpeg">
+        Your browser does not support the audio element.
+      </audio>
+    </div>
+
+    <div class="q-stem">Questions 1–8. Complete the form below. Write NO MORE THAN THREE WORDS AND/OR A NUMBER for each answer.</div>
+
+    <div class="diagram-box" style="background:white;border:1px solid var(--rule);padding:20px;border-radius:8px">
+      <h4 style="margin:0 0 16px 0;text-align:center;font-weight:700;color:var(--navy)">PACKHAM'S SHIPPING AGENCY – customer quotation</h4>
+      
+      <!-- Example box -->
+      <div style="background:#f5f5f5;border:2px solid var(--navy);padding:12px;margin-bottom:20px;border-radius:4px">
+        <div style="font-style:italic;font-weight:600;color:var(--navy);margin-bottom:6px">Example</div>
+        <div style="display:grid;grid-template-columns:200px 1fr;gap:16px">
+          <div style="font-weight:600">Country of destination:</div>
+          <div><strong>Kenya</strong>…</div>
+        </div>
+      </div>
+
+      <!-- Form fields -->
+      <div style="display:grid;grid-template-columns:200px 1fr;gap:16px;margin-bottom:20px;align-items:center">
+        <div style="font-weight:600">Name:</div>
+        <div>Jacob <strong style="font-size:1.2rem">1</strong> <input type="text" id="l-q1" style="border:none;border-bottom:2px solid var(--navy);width:150px;padding:4px;font-size:0.9rem" placeholder=""></div>
+      </div>
+
+      <div style="display:grid;grid-template-columns:200px 1fr;gap:16px;margin-bottom:20px;align-items:start">
+        <div style="font-weight:600">Address to be collected:</div>
+        <div>
+          <strong style="font-size:1.2rem">2</strong> <input type="text" id="l-q2" style="border:none;border-bottom:2px solid var(--navy);width:120px;padding:4px;font-size:0.9rem" placeholder="">
+          <div style="margin-left:0;margin-top:4px">College, Downlands Rd</div>
+          <div style="margin-top:4px">Town</div>
+        </div>
+      </div>
+
+      <div style="display:grid;grid-template-columns:200px 1fr;gap:16px;margin-bottom:20px;align-items:center">
+        <div style="font-weight:600">Postcode:</div>
+        <div><strong style="font-size:1.2rem">3</strong> <input type="text" id="l-q3" style="border:none;border-bottom:2px solid var(--navy);width:120px;padding:4px;font-size:0.9rem" placeholder=""></div>
+      </div>
+
+      <!-- Size of box with diagram -->
+      <div style="display:grid;grid-template-columns:200px 1fr;gap:16px;margin-bottom:20px;align-items:start">
+        <div style="font-weight:600">Size of</div>
+        <div>
+          <div style="width:360px;border:2px solid var(--navy);margin-bottom:12px;background:#f9f9f9;position:relative;display:flex;align-items:center;justify-content:center;padding:10px;border-radius:4px">
+            <img src="diagram/packham_box.png" alt="Packham's Shipping Agency box diagram — length, width, height" style="max-width:100%;height:auto;display:block">
+          </div>
+          <div style="font-size:0.9rem;margin-bottom:8px"><strong style="font-size:1.2rem">4</strong> Width: <input type="text" id="l-q4" style="border:none;border-bottom:2px solid var(--navy);width:100px;padding:4px;font-size:0.9rem" placeholder=""></div>
+          <div style="font-size:0.9rem"><strong style="font-size:1.2rem">5</strong> Height: <input type="text" id="l-q5" style="border:none;border-bottom:2px solid var(--navy);width:100px;padding:4px;font-size:0.9rem" placeholder=""></div>
+        </div>
+      </div>
+
+      <div style="display:grid;grid-template-columns:200px 1fr;gap:16px;margin-bottom:20px;align-items:start">
+        <div style="font-weight:600">Contents</div>
+        <div>
+          clothes<br>
+          <strong style="font-size:1.2rem">6</strong> <input type="text" id="l-q6" style="border:none;border-bottom:2px solid var(--navy);width:150px;padding:4px;font-size:0.9rem" placeholder="">
+          <div style="margin-top:8px"><strong style="font-size:1.2rem">7</strong> <input type="text" id="l-q7" style="border:none;border-bottom:2px solid var(--navy);width:150px;padding:4px;font-size:0.9rem" placeholder=""></div>
+          <div style="margin-top:4px">…</div>
+        </div>
+      </div>
+
+      <div style="display:grid;grid-template-columns:200px 1fr;gap:16px;margin-bottom:0;align-items:center">
+        <div style="font-weight:600">Total estimated value:</div>
+        <div><strong style="font-size:1.2rem">8</strong> <input type="text" id="l-q8" style="border:none;border-bottom:2px solid var(--navy);width:150px;padding:4px;font-size:0.9rem" placeholder=""></div>
+      </div>
+    </div>
+
+    <div class="q-stem" style="margin-top:18px">Questions 9–10</div>
+
+    <!-- AUDIO PLACEHOLDER — Questions 9-10
+         Replace the src="" below with the path/URL to your Questions 9-10 audio file, e.g. src="audio/part1-q9-10.mp3" -->
+    <div class="audio-box">
+      <div class="audio-label">🎧 Questions 9–10 Audio</div>
+      <audio controls>
+        <source src="audio/part1_1.mp3" type="audio/mpeg">
+        Your browser does not support the audio element.
+      </audio>
+    </div>
+
+    <div id="lq-mc"></div>
+  </div>
+
+  <div class="q-card">
+    <div class="q-num">Part 2 — The National Arts Centre</div>
+
+    <!-- AUDIO PLACEHOLDER — PART 2
+         Replace the src="" below with the path/URL to your Part 2 audio file, e.g. src="audio/part2.mp3" -->
+    <div class="audio-box">
+      <div class="audio-label">🎧 Part 2 Audio</div>
+      <audio controls>
+        <source src="audio/part2.mp3" type="audio/mpeg">
+        Your browser does not support the audio element.
+      </audio>
+    </div>
+
+    <div class="q-stem">Questions 11–16. <br>Complete the notes below.<br>Write <b>NO MORE THAN THREE WORDS AND/OR A NUMBER</b> for each answer.</div>
+
+    <div class="diagram-box" style="background:white;border:1px solid var(--rule);padding:16px;border-radius:8px;overflow-x:auto">
+      <table style="width:100%;border-collapse:collapse;font-size:0.9rem">
+        <tr style="border-bottom:2px solid var(--navy)">
+          <td colspan="2" style="padding:8px;text-align:center;font-weight:700;color:var(--navy)">THE NATIONAL ARTS CENTRE</td>
+        </tr>
+        <tr style="border-bottom:1px solid var(--rule)">
+          <td style="padding:8px;font-weight:600;color:var(--navy);width:40%">Well known for:</td>
+          <td style="padding:8px">11 <input type="text" id="l-q11" style="border:none;border-bottom:1px solid var(--ink);width:100%;padding:2px;font-size:0.9rem" placeholder="answer"></td>
+        </tr>
+        <tr style="border-bottom:1px solid var(--rule)">
+          <td style="padding:8px;font-weight:600;color:var(--navy)">Complex consists of:</td>
+          <td style="padding:8px">
+            <div style="margin-bottom:4px">concert rooms</div>
+            <div style="margin-bottom:4px">theatres</div>
+            <div style="margin-bottom:4px">cinemas</div>
+            <div style="margin-bottom:4px">art galleries</div>
+            <div style="margin-bottom:4px">public library</div>
+            <div style="margin-bottom:4px">restaurants</div>
+            <div style="margin-bottom:4px">12 <input type="text" id="l-q12" style="border:none;border-bottom:1px solid var(--ink);width:100%;max-width:150px;padding:2px;font-size:0.9rem" placeholder="answer"></div>
+          </td>
+        </tr>
+        <tr style="border-bottom:1px solid var(--rule)">
+          <td style="padding:8px;font-weight:600;color:var(--navy)">Historical background:</td>
+          <td style="padding:8px">
+            <div style="margin-bottom:4px">1940 – area destroyed by bombs</div>
+            <div style="margin-bottom:4px">1960s – Centre was 13 <input type="text" id="l-q13" style="border:none;border-bottom:1px solid var(--ink);width:100%;max-width:150px;padding:2px;font-size:0.9rem" placeholder="answer"></div>
+            <div style="margin-top:4px">In 14 <input type="text" id="l-q14" style="border:none;border-bottom:1px solid var(--ink);width:100%;max-width:80px;padding:2px;font-size:0.9rem" placeholder="year"> – opened to public</div>
+          </td>
+        </tr>
+        <tr style="border-bottom:1px solid var(--rule)">
+          <td style="padding:8px;font-weight:600;color:var(--navy)">Managed by:</td>
+          <td style="padding:8px">15 <input type="text" id="l-q15" style="border:none;border-bottom:1px solid var(--ink);width:100%;padding:2px;font-size:0.9rem" placeholder="answer"></td>
+        </tr>
+        <tr>
+          <td style="padding:8px;font-weight:600;color:var(--navy)">Open:</td>
+          <td style="padding:8px">16 <input type="text" id="l-q16" style="border:none;border-bottom:1px solid var(--ink);width:100%;max-width:150px;padding:2px;font-size:0.9rem" placeholder="days per year"> days per year</td>
+        </tr>
+      </table>
+    </div>
+
+    <div class="q-stem" style="margin-top:18px">Questions 17–20. <br>Complete the table below. <br>Write <b>NO MORE THAN THREE WORDS AND/OR A NUMBER</b> for each answer.</div>
+
+    <div class="diagram-box" style="background:white;border:1px solid var(--rule);padding:16px;border-radius:8px;overflow-x:auto">
+      <table style="width:100%;border-collapse:collapse;font-size:0.9rem">
+        <tr style="border-bottom:2px solid var(--navy)">
+          <th style="padding:8px;text-align:center;border-right:1px solid var(--rule);font-weight:700;color:var(--navy)">Day</th>
+          <th style="padding:8px;text-align:center;border-right:1px solid var(--rule);font-weight:700;color:var(--navy)">Time</th>
+          <th style="padding:8px;text-align:center;border-right:1px solid var(--rule);font-weight:700;color:var(--navy)">Event</th>
+          <th style="padding:8px;text-align:center;border-right:1px solid var(--rule);font-weight:700;color:var(--navy)">Venue</th>
+          <th style="padding:8px;text-align:center;font-weight:700;color:var(--navy)">Ticket price</th>
+        </tr>
+        <tr style="border-bottom:1px solid var(--rule)">
+          <td style="padding:8px;border-right:1px solid var(--rule)">Monday and Tuesday</td>
+          <td style="padding:8px;border-right:1px solid var(--rule)">7.30 p.m.</td>
+          <td style="padding:8px;border-right:1px solid var(--rule)">The Magic Flute (opera by Mozart)</td>
+          <td style="padding:8px;border-right:1px solid var(--rule)">17 <input type="text" id="l-q17" style="border:none;border-bottom:1px solid var(--ink);width:100%;padding:2px;font-size:0.9rem" placeholder="answer"></td>
+          <td style="padding:8px">from £8.00</td>
+        </tr>
+        <tr style="border-bottom:1px solid var(--rule)">
+          <td style="padding:8px;border-right:1px solid var(--rule)">Wednesday</td>
+          <td style="padding:8px;border-right:1px solid var(--rule)">8.00 p.m.</td>
+          <td style="padding:8px;border-right:1px solid var(--rule)">18 <input type="text" id="l-q18" style="border:none;border-bottom:1px solid var(--ink);width:100%;padding:2px;font-size:0.9rem" placeholder="answer"> (Canadian film)</td>
+          <td style="padding:8px;border-right:1px solid var(--rule)">Cinema 2</td>
+          <td style="padding:8px">19 <input type="text" id="l-q19" style="border:none;border-bottom:1px solid var(--ink);width:100%;padding:2px;font-size:0.9rem" placeholder="answer"></td>
+        </tr>
+        <tr>
+          <td style="padding:8px;border-right:1px solid var(--rule)">Saturday and Sunday</td>
+          <td style="padding:8px;border-right:1px solid var(--rule)">11 a.m. to 10 p.m.</td>
+          <td style="padding:8px;border-right:1px solid var(--rule)">20 <input type="text" id="l-q20" style="border:none;border-bottom:1px solid var(--ink);width:100%;padding:2px;font-size:0.9rem" placeholder="answer"> (art exhibition)</td>
+          <td style="padding:8px;border-right:1px solid var(--rule)">Gallery 1</td>
+          <td style="padding:8px">free</td>
+        </tr>
+      </table>
+    </div>
+  </div>
+
+  <div class="nav-row">
+    <span class="progress-text">Review your answers before moving on.</span>
+    <button class="btn btn-teal" onclick="goSection(3)">Next: Writing Task →</button>
+  </div>
+
+  <!-- IELTS Attribution -->
+  <div style="margin-top:40px;padding:16px;background:#f0f8ff;border-left:4px solid var(--navy);border-radius:6px;font-size:0.85rem;color:var(--ink-mid);text-align:center">
+    <p style="margin:0"><strong>Acknowledgement:</strong> This mock test is based on official IELTS sample materials provided by the British Council, IDP and Cambridge Assessment English. All rights reserved.</p>
+  </div>
+</div>
+
+<!-- ══ SECTION 3: Writing ══ -->
+<div class="exam-section" id="sec3">
+  <div class="section-hdr">
+    <div class="section-eyebrow">Section 3</div>
+    <div class="section-title">Writing — Task 2</div>
+    <div class="section-desc">Write at least 250 words. Suggested time: <strong>40 minutes</strong>.</div>
+  </div>
+
+  <div class="q-card">
+    <div class="q-num">Writing Prompt</div>
+    <div class="q-stem" style="font-size:1.02rem;background:#F4F6F9;padding:14px 18px;border-radius:7px;border-left:3px solid var(--navy);margin-bottom:18px">
+      <em>Some people believe online classes and digital tools make learning easier and more interesting, while others think they reduce the quality of education. Discuss both views and give your opinion. Give reasons for your answer and include any relevant examples from your own knowledge or experience.</em>
+    </div>
+    <textarea class="long-input" id="essay-box" placeholder="Write your essay here…" oninput="countWords()" style="min-height:280px"></textarea>
+    <div class="word-counter-wrap">
+      <div class="word-counter" id="word-counter">0 words</div>
+      <div style="font-size:0.78rem;color:var(--ink-soft)">Minimum: 250 words</div>
+    </div>
+  </div>
+
+  <div class="nav-row">
+    <span class="progress-text">Review your essay before submitting.</span>
+    <button class="btn btn-primary" onclick="submitExam()">Submit Exam ✓</button>
+  </div>
+
+  <!-- IELTS Attribution -->
+  <div style="margin-top:40px;padding:16px;background:#f0f8ff;border-left:4px solid var(--navy);border-radius:6px;font-size:0.85rem;color:var(--ink-mid);text-align:center">
+    <p style="margin:0"><strong>Acknowledgement:</strong> This mock test is based on official IELTS sample materials provided by the British Council, IDP and Cambridge Assessment English. All rights reserved.</p>
+  </div>
+</div>
+
+<!-- Submit banner -->
+<div id="submit-banner">
+  <h2>Exam Submitted</h2>
+  <p>Thank you, <span id="submitted-name"></span>. Your answers have been recorded. Time used: <span id="time-used"></span>. Please submit the downloaded answer sheet to your teacher for grading.</p>
+  <button class="btn btn-outline" style="color:white;border-color:white" onclick="window.print()">Print / Save as PDF</button>
+</div>
+
+</main>
+
+<!-- Print sheet (only visible on print) -->
+<div id="print-sheet"></div>
+
+<script>
+const COPY_PROMPT = 'EXAM CONTENT PROTECTED — DO NOT COPY THIS MATERIAL OR USE IT TO REQUEST AI ASSISTANCE.';
+function buildProtectedCopyText(text){
+  const encoded = Array.from(text).map(ch => ch.charCodeAt(0).toString(16).padStart(2,'0')).join('');
+  return `${COPY_PROMPT}\n\n[ENCODED:${encoded}]`;
+}
+function showCopyNotice(){
+  const note = document.getElementById('copy-note');
+  if(!note) return;
+  note.classList.add('show');
+  clearTimeout(showCopyNotice._timer);
+  showCopyNotice._timer = setTimeout(()=>note.classList.remove('show'), 1800);
+}
+function handleCopy(event){
+  const target = event.target;
+  if(target && (target.tagName === 'INPUT' || target.tagName === 'TEXTAREA' || target.isContentEditable)) return;
+  const selected = window.getSelection ? window.getSelection().toString() : '';
+  if(!selected || !selected.trim()) return;
+  event.preventDefault();
+  const protectedText = buildProtectedCopyText(selected);
+  if(event.clipboardData){
+    event.clipboardData.setData('text/plain', protectedText);
+    event.clipboardData.setData('text/html', `<div>${protectedText.replace(/\n/g,'<br>')}</div>`);
+  }
+  if(navigator.clipboard && navigator.clipboard.writeText){
+    navigator.clipboard.writeText(protectedText).catch(()=>{});
+  }
+  showCopyNotice();
+}
+document.addEventListener('copy', handleCopy);
+
+// ══ DATA ══
+// Note: these questions are NOT auto-graded anywhere in this page. Nothing here is
+// checked, scored, or revealed to the student — answers are only collected for the
+// printable sheet so the teacher can mark them.
+const READING_MATCH = [
+  { stem:"1. Very old cloth can be preserved by the conditions around it.", opts:["Good","Lambert","Jakes","Drooker","Barber"] },
+  { stem:"2. The ability to create things out of cloth had as great an impact on society as the invention of tools.", opts:["Good","Lambert","Jakes","Drooker","Barber"] },
+  { stem:"3. Evidence has led to a re-evaluation of where certain materials originated.", opts:["Good","Lambert","Jakes","Drooker","Barber"] },
+  { stem:"4. Studying cloth can teach us about the expertise of early peoples.", opts:["Good","Lambert","Jakes","Drooker","Barber"] },
+  { stem:"5. We can use very small remnants of cloth to learn about ancient life.", opts:["Good","Lambert","Jakes","Drooker","Barber"] },
+  { stem:"6. Archaeologists can get misleading information from objects used for fighting.", opts:["Good","Lambert","Jakes","Drooker","Barber"] }
+];
+const READING_YNN = [
+  { stem:"7. Information about an insect can offer evidence about the origins of a piece of cloth.", opts:["YES","NO","NOT GIVEN"] },
+  { stem:"8. Scientists have long realised the potential of ancient scraps of material.", opts:["YES","NO","NOT GIVEN"] },
+  { stem:"9. According to Lambert, we can predict the amount of time that organic materials can last.", opts:["YES","NO","NOT GIVEN"] },
+  { stem:"10. Joseph Lambert has led the way in research techniques of archaeological artefacts.", opts:["YES","NO","NOT GIVEN"] },
+  { stem:"11. Jakes' experiments with dye were the first of this kind to be carried out.", opts:["YES","NO","NOT GIVEN"] },
+  { stem:"12. Evershed's evidence supports the theory that Ancient Egyptians used a basic method to preserve mummies.", opts:["YES","NO","NOT GIVEN"] },
+  { stem:"13. Researchers have used new data to question previous theories about the expertise of early people.", opts:["YES","NO","NOT GIVEN"] }
+];
+const LISTENING_MC = [
+  { id:"q9", stem:"9. Type of insurance chosen", opts:["A. Economy","B. Standard","C. Premium"] },
+  { id:"q10", stem:"10. Customer wants goods delivered to", opts:["A. Port","B. Home","C. Depot"] }
+];
+
+// ══ GOOGLE SHEET SUBMISSION ══
+// Paste the Web App URL from your Apps Script deployment between the quotes below.
+// Leave it as-is (empty) and the exam will just fall back to the print sheet only.
+const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbyU1x_Yl_WarI8WW6yD6zHMf8ELKd8PdTajxCbOq0a6SgMrtoOCSAc_CibR0ZkkIgLYwg/exec";
+
+function collectPayload(timeStr){
+  const name = document.getElementById('student-name').value;
+  const date = document.getElementById('student-date').value;
+  const essay = document.getElementById('essay-box').value;
+
+  const mLetters=['A','B','C','D','E'];
+  const readingMatch = READING_MATCH.map((q,qi)=> matchAnswers[qi]!==undefined ? `${qi+1}:${mLetters[matchAnswers[qi]]}` : `${qi+1}:—`).join(' | ');
+  const readingYNN = READING_YNN.map((q,qi)=> ynnAnswers[qi]!==undefined ? `${qi+7}:${q.opts[ynnAnswers[qi]]}` : `${qi+7}:—`).join(' | ');
+
+  let listeningPart1 = [];
+  for(let i=1;i<=8;i++){
+    const val = document.getElementById(`l-q${i}`)?.value || '—';
+    listeningPart1.push(`${i}:${val}`);
+  }
+  listeningPart1 = listeningPart1.join(' | ');
+
+  const listeningMC = LISTENING_MC.map((q,qi)=> mcAnswers[qi]!==undefined ? `${qi+9}:${q.opts[mcAnswers[qi]]}` : `${qi+9}:—`).join(' | ');
+
+  let listeningPart2 = [];
+  for(let i=11;i<=20;i++){
+    const val = document.getElementById(`l-q${i}`)?.value || '—';
+    listeningPart2.push(`${i}:${val}`);
+  }
+  listeningPart2 = listeningPart2.join(' | ');
+
+  return { name, date, timeUsed: timeStr, readingMatch, readingYNN, essay, listeningPart1, listeningMC, listeningPart2 };
+}
+
+function sendToGoogleSheet(payload){
+  if(!SCRIPT_URL){
+    console.log('SCRIPT_URL not set — skipping Google Sheet submission. Answers are still on the printable sheet.');
+    return;
+  }
+  fetch(SCRIPT_URL, {
+    method:'POST',
+    mode:'no-cors',
+    headers: { 'Content-Type':'text/plain;charset=utf-8' },
+    body: JSON.stringify(payload)
+  }).catch(()=>{ /* fail silently — the print sheet is always the backup record */ });
+}
+
+// ══ STATE ══
+let currentSection = 0;
+let timerInterval = null;
+let secondsLeft = 5400; // 90 minutes
+let examStarted = false;
+let matchAnswers = {};
+let ynnAnswers = {};
+let mcAnswers = {};
+let submitted = false;
+let startTime = null;
+
+// ══ TIMER ══
+function startTimer(){
+  timerInterval = setInterval(()=>{
+    if(submitted){clearInterval(timerInterval);return}
+    secondsLeft--;
+    const m = Math.floor(secondsLeft/60);
+    const s = secondsLeft%60;
+    const el = document.getElementById('timer');
+    el.textContent = `${String(m).padStart(2,'0')}:${String(s).padStart(2,'0')}`;
+    if(secondsLeft<=600 && secondsLeft>120) el.className='amber';
+    else if(secondsLeft<=120) el.className='red';
+    if(secondsLeft<=0){clearInterval(timerInterval);submitExam();}
+  },1000);
+}
+
+// ══ PROGRESS RAIL ══
+function buildRail(){
+  const rail = document.getElementById('progress-rail');
+  rail.innerHTML='';
+  ['R','W','L'].forEach((lbl,i)=>{
+    const d = document.createElement('div');
+    d.className = 'rail-step';
+    d.title = ['Reading','Writing','Listening'][i];
+    d.id = `rail-${i+1}`;
+    rail.appendChild(d);
+  });
+  updateRail();
+}
+function updateRail(){
+  [1,2,3].forEach(i=>{
+    const el = document.getElementById(`rail-${i}`);
+    if(!el) return;
+    el.className = 'rail-step ' + (i < currentSection ? 'done' : i === currentSection ? 'active' : '');
+  });
+}
+
+// ══ START ══
+function startExam(){
+  const name = document.getElementById('student-name').value.trim();
+  const date = document.getElementById('student-date').value;
+  const integrityConfirmed = document.getElementById('integrity-check').checked;
+  if(!name){alert('Please enter your name before starting.');document.getElementById('student-name').focus();return;}
+  if(!date){alert('Please select today\'s date before starting.');document.getElementById('student-date').focus();return;}
+  if(!integrityConfirmed){alert('Please confirm the individual-work statement before starting.');document.getElementById('integrity-check').focus();return;}
+  examStarted = true;
+  startTime = Date.now();
+  document.getElementById('cover').classList.add('hidden');
+  buildRail();
+  buildReading();
+  buildListeningMC();
+  goSection(1);
+  startTimer();
+}
+
+// ══ SECTION NAVIGATION ══
+function goSection(n){
+  document.querySelectorAll('.exam-section').forEach(s=>s.classList.remove('active'));
+  const el = document.getElementById('sec'+n);
+  if(el){ el.classList.add('active'); currentSection = n; updateRail(); }
+  window.scrollTo({top:0,behavior:'smooth'});
+}
+
+// ══ BUILD READING ══
+function buildReading(){
+  const letters=['A','B','C','D','E'];
+  const matchC = document.getElementById('rq-match');
+  matchC.innerHTML = READING_MATCH.map((q,qi)=>`
+    <div class="q-card" id="rmatch${qi}" style="box-shadow:none;padding:12px 0;margin-bottom:8px">
+      <div class="q-stem" style="margin-bottom:8px">${q.stem}</div>
+      <div class="options" id="ropts_m${qi}">
+        ${q.opts.map((o,oi)=>`
+          <label class="opt-label" id="ropt_m${qi}_${oi}" onclick="pickMatch(${qi},${oi})">
+            <input type="radio" name="rmatch${qi}" value="${oi}">
+            <span class="opt-key">${letters[oi]}</span>
+            <span>${o}</span>
+          </label>`).join('')}
+      </div>
+    </div>`).join('');
+
+  const ynnLetters=['Y','N','NG'];
+  const ynnC = document.getElementById('rq-ynn');
+  ynnC.innerHTML = READING_YNN.map((q,qi)=>`
+    <div class="q-card" id="rynn${qi}" style="box-shadow:none;padding:12px 0;margin-bottom:8px">
+      <div class="q-stem" style="margin-bottom:8px">${q.stem}</div>
+      <div class="options" id="ropts_y${qi}">
+        ${q.opts.map((o,oi)=>`
+          <label class="opt-label" id="ropt_y${qi}_${oi}" onclick="pickYnn(${qi},${oi})">
+            <input type="radio" name="rynn${qi}" value="${oi}">
+            <span class="opt-key">${ynnLetters[oi]}</span>
+            <span>${o}</span>
+          </label>`).join('')}
+      </div>
+    </div>`).join('');
+}
+function pickMatch(qi,oi){
+  document.querySelectorAll(`#ropts_m${qi} .opt-label`).forEach(l=>l.classList.remove('selected'));
+  document.getElementById(`ropt_m${qi}_${oi}`).classList.add('selected');
+  matchAnswers[qi]=oi;
+  updateReadingProgress();
+}
+function pickYnn(qi,oi){
+  document.querySelectorAll(`#ropts_y${qi} .opt-label`).forEach(l=>l.classList.remove('selected'));
+  document.getElementById(`ropt_y${qi}_${oi}`).classList.add('selected');
+  ynnAnswers[qi]=oi;
+  updateReadingProgress();
+}
+function updateReadingProgress(){
+  const total = READING_MATCH.length + READING_YNN.length;
+  const done = Object.keys(matchAnswers).length + Object.keys(ynnAnswers).length;
+  document.getElementById('reading-progress').textContent = `${done} / ${total} answered`;
+}
+
+// ══ BUILD LISTENING MC ══
+function buildListeningMC(){
+  const c = document.getElementById('lq-mc');
+  c.innerHTML = LISTENING_MC.map((q,qi)=>`
+    <div class="q-card" style="box-shadow:none;padding:12px 0;margin-bottom:8px">
+      <div class="q-stem" style="margin-bottom:8px">${q.stem}</div>
+      <div class="mc-row" id="lopts${qi}">
+        ${q.opts.map((o,oi)=>`
+          <label class="opt-label" id="lopt${qi}_${oi}" onclick="pickMC(${qi},${oi})" style="flex:1;min-width:140px">
+            <span>${o}</span>
+          </label>`).join('')}
+      </div>
+    </div>`).join('');
+}
+function pickMC(qi,oi){
+  document.querySelectorAll(`#lopts${qi} .opt-label`).forEach(l=>l.classList.remove('selected'));
+  document.getElementById(`lopt${qi}_${oi}`).classList.add('selected');
+  mcAnswers[qi]=oi;
+}
+
+// ══ WORD COUNTER ══
+function countWords(){
+  const txt = document.getElementById('essay-box').value.trim();
+  const words = txt ? txt.split(/\s+/).length : 0;
+  const el = document.getElementById('word-counter');
+  el.textContent = `${words} word${words!==1?'s':''}`;
+  el.className='word-counter'+(words>=250?' ok':'');
+}
+
+// ══ SUBMIT ══
+function submitExam(){
+  if(submitted) return;
+  submitted = true;
+  clearInterval(timerInterval);
+  const elapsed = Math.round((Date.now()-startTime)/1000);
+  const em = Math.floor(elapsed/60), es = elapsed%60;
+  const timeStr = `${String(em).padStart(2,'0')}:${String(es).padStart(2,'0')}`;
+  const studentName = document.getElementById('student-name').value;
+  document.querySelectorAll('.exam-section').forEach(s=>s.classList.remove('active'));
+  document.querySelectorAll('.btn').forEach(b=>{
+    if (!b.closest('#submit-banner')) b.disabled = true;
+  });
+  const banner = document.getElementById('submit-banner');
+  banner.style.display='block';
+  document.getElementById('submitted-name').textContent = studentName;
+  document.getElementById('time-used').textContent = timeStr;
+  updateRail();
+  buildPrintSheet(timeStr);
+  sendToGoogleSheet(collectPayload(timeStr));
+}
+
+// ══ PRINT SHEET (answers only — no correct/incorrect marking; teacher grades this) ══
+function buildPrintSheet(timeStr){
+  const name = document.getElementById('student-name').value;
+  const date = document.getElementById('student-date').value;
+  const essay = document.getElementById('essay-box').value;
+  let html = `<h2 style="font-size:16pt;margin-bottom:4px">IELTS Mock Test — Answer Sheet</h2>
+  <p style="font-size:10pt;color:#555;margin-bottom:20px">Student: <strong>${name}</strong> &nbsp;|&nbsp; Date: ${date} &nbsp;|&nbsp; Time used: ${timeStr}</p>`;
+
+  // Reading — matching
+  const mLetters=['A','B','C','D','E'];
+  html+=`<div class="print-section"><h3>Reading — Questions 1–6 (Matching)</h3>`;
+  READING_MATCH.forEach((q,qi)=>{
+    const ans = matchAnswers[qi]!==undefined ? `${mLetters[matchAnswers[qi]]} — ${q.opts[matchAnswers[qi]]}` : '(no answer)';
+    html+=`<div class="print-item"><strong>Q${qi+1}.</strong> ${ans}</div>`;
+  });
+  html+=`</div>`;
+
+  // Reading — Y/N/NG
+  html+=`<div class="print-section"><h3>Reading — Questions 7–13 (Yes / No / Not Given)</h3>`;
+  READING_YNN.forEach((q,qi)=>{
+    const ans = ynnAnswers[qi]!==undefined ? q.opts[ynnAnswers[qi]] : '(no answer)';
+    html+=`<div class="print-item"><strong>Q${qi+7}.</strong> ${ans}</div>`;
+  });
+  html+=`</div>`;
+
+  // Writing
+  html+=`<div class="print-section"><h3>Writing — Task 2</h3>`;
+  html+=`<div class="print-item" style="line-height:1.8">${essay || '(no answer)'}</div>`;
+  html+=`</div>`;
+
+  // Listening — Part 1 form
+  html+=`<div class="print-section"><h3>Listening — Part 1 (Questions 1–8)</h3>`;
+  for(let i=1;i<=8;i++){
+    const val = document.getElementById(`l-q${i}`)?.value || '(no answer)';
+    html+=`<div class="print-item"><strong>Q${i}.</strong> ${val}</div>`;
+  }
+  LISTENING_MC.forEach((q,qi)=>{
+    const ans = mcAnswers[qi]!==undefined ? q.opts[mcAnswers[qi]] : '(no answer)';
+    html+=`<div class="print-item"><strong>Q${qi+9}.</strong> ${ans}</div>`;
+  });
+  html+=`</div>`;
+
+  // Listening — Part 2
+  html+=`<div class="print-section"><h3>Listening — Part 2 (Questions 11–15)</h3>`;
+  for(let i=11;i<=15;i++){
+    const val = document.getElementById(`l-q${i}`)?.value || '(no answer)';
+    html+=`<div class="print-item"><strong>Q${i}.</strong> ${val}</div>`;
+  }
+  html+=`</div>`;
+
+  document.getElementById('print-sheet').innerHTML = html;
+}
+</script>
+</body>
+</html>
