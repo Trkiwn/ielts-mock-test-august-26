@@ -114,6 +114,14 @@ main{max-width:820px;margin:0 auto;padding:80px 20px 40px}
 .section-desc{font-size:0.9rem;color:var(--ink-mid);line-height:1.6}
 .marks-badge{display:inline-block;background:var(--navy);color:white;border-radius:20px;padding:3px 12px;font-size:0.72rem;font-weight:600;margin-left:10px;vertical-align:middle}
 /* ── Passage ── */
+.passage-tools{display:flex;justify-content:flex-end;gap:10px;margin:8px 0 14px}
+.highlight-btn{
+  border:1px solid var(--rule);background:white;color:var(--navy);
+  border-radius:999px;padding:7px 12px;font-size:0.75rem;font-weight:700;letter-spacing:0.04em;text-transform:uppercase;
+  cursor:pointer;transition:all 0.15s ease;
+}
+.highlight-btn.active{background:var(--navy);color:white;border-color:var(--navy)}
+.highlight-btn:hover{transform:translateY(-1px)}
 .passage{
   background:#fbfdff;border:1px solid var(--rule);border-radius:10px;
   padding:16px 18px;margin:12px 0 18px;font-size:0.94rem;
@@ -121,6 +129,11 @@ main{max-width:820px;margin:0 auto;padding:80px 20px 40px}
 }
 .passage p{margin:0 0 12px}
 .passage p:last-child{margin-bottom:0}
+.passage .highlighted{
+  background:linear-gradient(180deg, rgba(255,220,120,0.65), rgba(255,220,120,0.85));
+  border-radius:4px;padding:0 2px;box-shadow:0 0 0 1px rgba(210,150,20,0.15);
+}
+.passage.highlighting{box-shadow:inset 0 0 0 1px rgba(40,88,160,0.18)}
 /* ── Question card ── */
 .q-card{
   background:var(--card);border-radius:10px;
@@ -258,7 +271,11 @@ main{max-width:820px;margin:0 auto;padding:80px 20px 40px}
 
   <div class="q-card">
     <div class="q-num">Passage</div>
-    <div class="passage">
+    <div class="passage-tools">
+      <button type="button" class="highlight-btn" id="highlight-toggle" onclick="toggleHighlightMode()">Highlight text</button>
+      <button type="button" class="highlight-btn" id="clear-highlights" onclick="clearPassageHighlights()">Clear highlights</button>
+    </div>
+    <div class="passage" id="reading-passage">
       <p>In a museum laboratory, Irene Good is studying pieces of silk from long-lost cloth found at archaeological sites in western Europe and central and south Asia. Good immerses the threads in a solution to tease apart the strands of protein. Then she uses several methods of biochemical analysis to examine the proteins' amino acids. What amino acids are present and the order they are in vary in different species of moths and therefore give a clue to the place where the silk was made.</p>
       <p>"What I love most is being able, not just to alter what's known, but to improve access to the past based on very tiny pieces of evidence. Until recently, it was assumed that all [ancient] silk was from China," says Good, a specialist in fibre analysis and ancient-textile production and trade at Harvard University's Peabody Museum. "Scholars held that any silk dating from 2400 to 700 B.C. was carried afar on trade routes from China. But our work is now calling that assumption into question." Her findings indicate that the ancient silk came not from domesticated Chinese silkworms but from species of wild moths native to western Europe and Asia. "Now it looks like some of the silk industry outside China was earlier than thought and more widespread," Good says.</p>
       <p>Today, Good and other researchers are applying high-tech methods of chemical analysis to ancient textiles and fibres to glean unique clues about past civilisations. The results are shedding light on many aspects of daily life among early peoples. Much of the insight is coming from minuscule samples of textiles, which archaeologists categorise as "fibre perishables". Until recently, these remains were usually overlooked because they were frayed, discoloured or too fragile to withstand the rigours of analysis.</p>
@@ -682,6 +699,95 @@ function updateRail(){
     el.className = 'rail-step ' + (i < currentSection ? 'done' : i === currentSection ? 'active' : '');
   });
 }
+
+// ══ READING HIGHLIGHT TOOL ══
+let highlightMode = false;
+
+function toggleHighlightMode(forceState){
+  const passage = document.getElementById('reading-passage');
+  const button = document.getElementById('highlight-toggle');
+  if(!passage || !button) return;
+
+  highlightMode = typeof forceState === 'boolean' ? forceState : !highlightMode;
+  passage.classList.toggle('highlighting', highlightMode);
+  button.classList.toggle('active', highlightMode);
+  button.textContent = highlightMode ? 'Highlighting: ON' : 'Highlight text';
+}
+
+function clearPassageHighlights(){
+  const passage = document.getElementById('reading-passage');
+  if(!passage) return;
+  passage.querySelectorAll('.highlighted').forEach(node => {
+    const parent = node.parentNode;
+    if(!parent) return;
+    parent.replaceChild(document.createTextNode(node.textContent), node);
+  });
+}
+
+function applySelectionHighlight(){
+  if(!highlightMode) return;
+
+  const passage = document.getElementById('reading-passage');
+  const selection = window.getSelection();
+  if(!passage || !selection || selection.isCollapsed || selection.rangeCount === 0) return;
+
+  const range = selection.getRangeAt(0);
+  const selectedText = range.toString().trim();
+  if(!selectedText) return;
+
+  // Keep it simple and safe: only handle selections within a single text node.
+  if(range.startContainer !== range.endContainer) return;
+  if(range.startContainer.nodeType !== Node.TEXT_NODE) return;
+  if(range.startContainer.parentElement?.closest('.highlighted')) return;
+
+  const textNode = range.startContainer;
+  const text = textNode.textContent;
+  const start = range.startOffset;
+  const end = range.endOffset;
+
+  // Ignore selections that are only spaces or that wrap too much.
+  const selected = text.slice(start, end).trim();
+  if(!selected) return;
+
+  const before = text.slice(0, start);
+  const after = text.slice(end);
+  const parent = textNode.parentNode;
+
+  const beforeNode = before ? document.createTextNode(before) : null;
+  const afterNode = after ? document.createTextNode(after) : null;
+  const highlightNode = document.createElement('span');
+  highlightNode.className = 'highlighted';
+  highlightNode.textContent = selected;
+
+  try {
+    if(beforeNode) parent.insertBefore(beforeNode, textNode);
+    parent.insertBefore(highlightNode, textNode);
+    if(afterNode) parent.insertBefore(afterNode, textNode);
+    parent.removeChild(textNode);
+  } catch (error) {
+    return;
+  }
+
+  selection.removeAllRanges();
+}
+
+document.addEventListener('mouseup', () => {
+  if(!highlightMode) return;
+
+  const passage = document.getElementById('reading-passage');
+  const selection = window.getSelection();
+  if(!passage || !selection || selection.isCollapsed || selection.rangeCount === 0) return;
+
+  const anchor = selection.anchorNode;
+  const focus = selection.focusNode;
+  if(!passage.contains(anchor) || !passage.contains(focus)) return;
+
+  // The simple version intentionally skips complex cross-node selections.
+  const range = selection.getRangeAt(0);
+  if(range.startContainer !== range.endContainer) return;
+
+  applySelectionHighlight();
+});
 
 // ══ START ══
 function startExam(){
